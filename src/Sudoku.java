@@ -73,62 +73,73 @@ public class Sudoku {
     }
 
     public void propagateConstraint(int row, int column, int value, boolean isPropagation) {
-
-            for (int i = 0; i < size; ++i) {
-                if (i != row) {
-                    if (isPropagation) {
-                        getCell(i, column).getPossibleAssignments()[value] = 0;
-
+        for (int i = 0; i < size; ++i) {
+            if (i != row) {
+                if (isPropagation) {
+                    if (getCell(row, column).isStatic) {
+                        getCell(i, column).getPossibleAssignments()[value] = -1;
                     } else {
-                        if (!getCell(i, column).isStatic) {
+                        if (getCell(i, column).getPossibleAssignments()[value] != -1) {
+                            getCell(i, column).getPossibleAssignments()[value] = 0;
+                        }
+                    }
+                } else {
+                    if (!getCell(i, column).isStatic) {
+                        if (getCell(i, column).getPossibleAssignments()[value] != -1) {
                             getCell(i, column).getPossibleAssignments()[value] = 1;
                         }
-
-                    }
-                    if (getCell(i, column).nrOfPossibleAssignments() == 1) {
-                        //getCell(i, column).setFirstPossibleValue();
                     }
 
                 }
-                if (i != column) {
-                    if (isPropagation) {
-                        getCell(row, i).getPossibleAssignments()[value] = 0;
+            }
+
+            if (i != column) {
+                if (isPropagation) {
+                    if (getCell(row, column).isStatic) {
+                        getCell(row, i).getPossibleAssignments()[value] = -1;
                     } else {
-                        if (!getCell(row, i).isStatic) {
+                        if (getCell(row, i).getPossibleAssignments()[value] != -1) {
+                            getCell(row, i).getPossibleAssignments()[value] = 0;
+                        }
+                    }
+                } else {
+                    if (!getCell(row, i).isStatic) {
+                        if (getCell(row, i).getPossibleAssignments()[value] != -1) {
                             getCell(row, i).getPossibleAssignments()[value] = 1;
                         }
                     }
-                    if (getCell(row, i).nrOfPossibleAssignments() == 1) {
-                        //getCell(row, i).setFirstPossibleValue();
-                    }
 
                 }
             }
+        }
 
-            int unitSize = (int) Math.sqrt(size);
-            for (int i = row / unitSize * unitSize; i <= row / unitSize * unitSize + unitSize - 1; ++i) {
-                for (int j = column / unitSize * unitSize; j <= column / unitSize * unitSize + unitSize - 1; ++j) {
-                    if (i != row && j != column) {
-                        if (isPropagation) {
-                            getCell(i, j).getPossibleAssignments()[value] = 0;
-
+        int unitSize = (int) Math.sqrt(size);
+        for (int i = row / unitSize * unitSize; i <= row / unitSize * unitSize + unitSize - 1; ++i) {
+            for (int j = column / unitSize * unitSize; j <= column / unitSize * unitSize + unitSize - 1; ++j) {
+                if (i != row && j != column) {
+                    if (isPropagation) {
+                        if (getCell(row, column).isStatic) {
+                            getCell(i, j).getPossibleAssignments()[value] = -1;
                         } else {
-                            if (!getCell(i, j).isStatic) {
-                                getCell(i, j).getPossibleAssignments()[value] = 1;
-
+                            if (getCell(i, j).getPossibleAssignments()[value] != -1) {
+                                getCell(i, j).getPossibleAssignments()[value] = 0;
                             }
+                        }
 
+                    } else {
+                        if (!getCell(i, j).isStatic) {
+                            if (getCell(i, j).getPossibleAssignments()[value] != -1) {
+                                getCell(i, j).getPossibleAssignments()[value] = 1;
+                            }
                         }
-                        if (getCell(i, j).nrOfPossibleAssignments() == 1) {
-                            //getCell(i, j).setFirstPossibleValue();
-                        }
+
                     }
-
                 }
+
             }
+        }
 
     }
-
 
     public boolean isComplete() {
         for (int i = 0; i < size; ++i) {

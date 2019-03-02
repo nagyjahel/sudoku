@@ -44,6 +44,7 @@ public class Cell {
     public void resetPossibleAssignments(){
         if(actualValue != 0){
             possibleAssignments = new byte[puzzleSize + 1];
+            possibleAssignments[actualValue] = -1;
         }
     }
 
@@ -57,8 +58,5 @@ public class Cell {
             }
         }
         actualValue = value;
-        if (value != -1) {
-            //resetPossibleAssignments();
-        }
     }
 }

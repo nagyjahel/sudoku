@@ -4,7 +4,7 @@ public class Main {
         Sudoku sudoku = new Sudoku();
         sudoku.createFromFile("sudoku.txt");
         sudoku.print();
-        Solver.solve(sudoku, 0);
+        sudoku = Solver.solve(sudoku, 0);
         sudoku.print();
     }
 }

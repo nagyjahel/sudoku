@@ -1,12 +1,9 @@
 
 public class Solver {
 
-    public static int solve(Sudoku sudoku, int index) {
+    public static Sudoku solve(Sudoku sudoku, int index) {
 
-        if (sudoku.isComplete()) { return 0; }
-
-        if (index == sudoku.getSize() * sudoku.getSize()) { return 0; }
-
+        if (sudoku.isComplete()) { return sudoku; }
         int row = index / sudoku.getSize();
         int column = index % sudoku.getSize();
         Cell cell = sudoku.getCell(row, column);
@@ -17,16 +14,13 @@ public class Solver {
             cell.setFirstPossibleValue();
 
             if (cell.actualValue == -1) { break; }
-
             sudoku.propagateConstraint(row, column, cell.actualValue, true);
-            //sudoku.print();
-
-            int result = solve(new Sudoku(sudoku), index + 1);
-            if (result == 0) { return 0; }
+            Sudoku result = solve(new Sudoku(sudoku), index + 1);
+            if (result != null) {return result; }
             sudoku.propagateConstraint(row,column,cell.actualValue, false);
         }
 
-        return 1;
+        return null;
     }
 
 }
