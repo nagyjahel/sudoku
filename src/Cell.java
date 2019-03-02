@@ -3,17 +3,21 @@ import static java.util.Arrays.*;
 
 public class Cell {
 
+    public int row;
+    public int column;
     public int actualValue;
     private byte[] possibleAssignments;
     private int puzzleSize;
     public boolean isStatic;
 
-    public Cell(int puzzleSize){
+    public Cell(int puzzleSize, int i, int j){
         this.puzzleSize = puzzleSize;
         possibleAssignments = new byte[puzzleSize + 1];
         fill(possibleAssignments, (byte)1);
         possibleAssignments[0] = 0;
         isStatic = false;
+        row = i;
+        column = j;
     }
 
     public Cell(Cell originalCell) {
@@ -22,6 +26,8 @@ public class Cell {
         puzzleSize = originalCell.puzzleSize;
         possibleAssignments = new byte[puzzleSize+1];
         isStatic = originalCell.isStatic;
+        row = originalCell.row;
+        column = originalCell.column;
         for(int i=1; i<=puzzleSize; ++i){
             possibleAssignments[i] = originalCell.possibleAssignments[i];
         }

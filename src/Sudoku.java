@@ -51,7 +51,7 @@ public class Sudoku {
     private void initCells() {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
-                Cell cell = new Cell(size);
+                Cell cell = new Cell(size,i,j);
                 cells[i][j] = cell;
             }
         }
@@ -61,18 +61,133 @@ public class Sudoku {
         return cells[i][j];
     }
 
+    public Cell getMostConstraintedCell(){
+        int row = -1, column = -1, minimumAssignmentNumber = size * size;
+        for(int i=0; i<size; ++i){
+            for(int j=0; j<size; ++j){
+                if (getCell(i,j).nrOfPossibleAssignments() > 0  && getCell(i,j).nrOfPossibleAssignments() < minimumAssignmentNumber){
+                    row = i;
+                    column = j;
+                    minimumAssignmentNumber = getCell(i,j).nrOfPossibleAssignments();
+                }
+            }
+        }
+
+        if(row == -1 && column == -1){
+            return null;
+        }
+        Cell cell = getCell(row,column);
+        return cell;
+    }
+
     public void addCellToList(int row, int column, int value) {
-        getCell(row, column).actualValue = value;
-        getCell(row, column).resetPossibleAssignments();
+        Cell cell = getCell(row, column);
+        cell.row = row;
+        cell.column = column;
+        cell.actualValue = value;
+        cell.resetPossibleAssignments();
 
         if (value != 0) {
             getCell(row, column).isStatic = true;
-            propagateConstraint(row, column, value, true);
+            propagateConstraint(getCell(row, column));
         }
 
     }
 
-    public void propagateConstraint(int row, int column, int value, boolean isPropagation) {
+    public void singlePossibleAssignment(Cell originalCell){
+        for (int i = 0; i < size; ++i) {
+            if (i != originalCell.row) {
+                Cell cellOfTheSameColumn = getCell(i, originalCell.column);
+                if (!cellOfTheSameColumn.isStatic) {
+                        if(cellOfTheSameColumn.nrOfPossibleAssignments() == 1){
+                            cellOfTheSameColumn.setFirstPossibleValue();
+                            forwardCheking(cellOfTheSameColumn);
+                        }
+                }
+            }
+
+            if (i != originalCell.column) {
+                Cell cellOfTheSameRow = getCell(originalCell.row, i);
+                if (!cellOfTheSameRow.isStatic) {
+                        if(cellOfTheSameRow.nrOfPossibleAssignments() == 1){
+                            cellOfTheSameRow.setFirstPossibleValue();
+                            forwardCheking(cellOfTheSameRow);
+                        }
+                }
+            }
+        }
+
+        int unitSize = (int) Math.sqrt(size);
+        for (int i = originalCell.row / unitSize * unitSize; i <= originalCell.row / unitSize * unitSize + unitSize - 1; ++i) {
+            for (int j = originalCell.column / unitSize * unitSize; j <= originalCell.column / unitSize * unitSize + unitSize - 1; ++j) {
+                if (i != originalCell.row && j != originalCell.column) {
+                    Cell cellOfTheSameSquare = getCell(i, j);
+                    if (!cellOfTheSameSquare.isStatic) {
+                            if(cellOfTheSameSquare.nrOfPossibleAssignments() == 1){
+                                cellOfTheSameSquare.setFirstPossibleValue();
+                                forwardCheking(cellOfTheSameSquare);
+                            }
+
+                    }
+                }
+
+            }
+        }
+        //this.print();
+    }
+
+    public void propagateConstraint(Cell originalCell) {
+       // System.out.println("Constraint propagation: (" + originalCell.row + ", " + originalCell.column + ") - " + originalCell.actualValue);
+        forwardCheking(originalCell);
+        //singlePossibleAssignment(originalCell);
+    }
+
+    public void forwardCheking(Cell originalCell) {
+        for (int i = 0; i < size; ++i) {
+            if (i != originalCell.row) {
+                Cell cellOfTheSameColumn = getCell(i, originalCell.column);
+                    if (originalCell.isStatic) {
+                        cellOfTheSameColumn.getPossibleAssignments()[originalCell.actualValue] = -1;
+                    } else {
+                        if (cellOfTheSameColumn.getPossibleAssignments()[originalCell.actualValue] != -1) {
+                            cellOfTheSameColumn.getPossibleAssignments()[originalCell.actualValue] = 0;
+                        }
+                    }
+            }
+
+            if (i != originalCell.column) {
+                Cell cellOfTheSameRow = getCell(originalCell.row, i);
+                if (originalCell.isStatic) {
+                    cellOfTheSameRow.getPossibleAssignments()[originalCell.actualValue] = -1;
+                    } else {
+                        if (cellOfTheSameRow.getPossibleAssignments()[originalCell.actualValue] != -1) {
+                            cellOfTheSameRow.getPossibleAssignments()[originalCell.actualValue] = 0;
+                        }
+                    }
+            }
+        }
+
+        int unitSize = (int) Math.sqrt(size);
+        for (int i = originalCell.row / unitSize * unitSize; i <= originalCell.row / unitSize * unitSize + unitSize - 1; ++i) {
+            for (int j = originalCell.column / unitSize * unitSize; j <= originalCell.column / unitSize * unitSize + unitSize - 1; ++j) {
+                if (i != originalCell.row && j != originalCell.column) {
+                    Cell cellOfTheSameSquare = getCell(i, j);
+                        if (originalCell.isStatic) {
+                            cellOfTheSameSquare.getPossibleAssignments()[originalCell.actualValue] = -1;
+                        } else {
+                            if (cellOfTheSameSquare.getPossibleAssignments()[originalCell.actualValue] != -1) {
+                                cellOfTheSameSquare.getPossibleAssignments()[originalCell.actualValue] = 0;
+                            }
+                        }
+                }
+
+            }
+        }
+
+    }
+
+    public void propagateConstraintBackup(Cell cell, boolean isPropagation) {
+        int row = cell.row, column = cell.column, value = cell.actualValue;
         for (int i = 0; i < size; ++i) {
             if (i != row) {
                 if (isPropagation) {
@@ -140,7 +255,6 @@ public class Sudoku {
         }
 
     }
-
     public boolean isComplete() {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
@@ -179,11 +293,23 @@ public class Sudoku {
         }
         System.out.println();
 
+        for(int i=0; i<9;++i){
+            System.out.print("( " + 0 + ", " + i + "): Possible assignments: ");
+            for(int j=1; j<=9; ++j){
+                System.out.print(getCell(0,i).getPossibleAssignments()[j] + " ");
+            }
+            System.out.println();
+
+        }
+
+
         System.out.println("_______________________________________________________________________________________");
         System.out.println();
 
 
     }
+
+
 
 
 }
