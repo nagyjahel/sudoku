@@ -10,6 +10,9 @@ public class Cell {
     private int puzzleSize;
     public boolean isStatic;
 
+    /**
+     * Constructor
+     * */
     public Cell(int puzzleSize, int i, int j){
         this.puzzleSize = puzzleSize;
         possibleAssignments = new byte[puzzleSize + 1];
@@ -20,6 +23,9 @@ public class Cell {
         column = j;
     }
 
+    /**
+     * Copy constructor
+     * */
     public Cell(Cell originalCell) {
 
         actualValue = originalCell.actualValue;
@@ -33,10 +39,9 @@ public class Cell {
         }
     }
 
-    public byte[] getPossibleAssignments() {
-        return possibleAssignments;
-    }
-
+    /**
+     * Returns the number of possible assignments of the actual cells
+     * */
     public int nrOfPossibleAssignments(){
         int nr = 0;
         for(int i=1; i<=puzzleSize; ++i){
@@ -47,6 +52,9 @@ public class Cell {
         return  nr;
     }
 
+    /**
+     * Creates a new byte array having 0 on all of its positions, and -1 for the value of the cell
+     * */
     public void resetPossibleAssignments(){
         if(actualValue != 0){
             possibleAssignments = new byte[puzzleSize + 1];
@@ -54,6 +62,9 @@ public class Cell {
         }
     }
 
+    /**
+     * Sets the first possible value
+     * */
     public void setFirstPossibleValue(){
         int value = -1;
         for(int i=1; i<=puzzleSize; ++i){
@@ -64,5 +75,12 @@ public class Cell {
             }
         }
         actualValue = value;
+    }
+
+    /**
+     * Returns the array of the possible assignments
+     * */
+    public byte[] getPossibleAssignments() {
+        return possibleAssignments;
     }
 }

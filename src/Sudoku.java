@@ -7,9 +7,16 @@ public class Sudoku {
     private int size;
     private Cell[][] cells;
 
+    /**
+     * Default constructor
+     * */
     public Sudoku() {
     }
 
+
+    /**
+     * Copy constructor
+     * */
     public Sudoku(Sudoku original) {
 
         size = original.size;
@@ -23,6 +30,9 @@ public class Sudoku {
 
     }
 
+    /**
+     * Creates a Sudoku based on the values of a file
+     * */
     public void createFromFile(String fileName) {
 
         try {
@@ -44,10 +54,9 @@ public class Sudoku {
         }
     }
 
-    public int getSize() {
-        return size;
-    }
-
+    /**
+     * Creates the cell entities of the sudoku
+     * */
     private void initCells() {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
@@ -57,15 +66,14 @@ public class Sudoku {
         }
     }
 
-    public Cell getCell(int i, int j) {
-        return cells[i][j];
-    }
-
+    /**
+     * Returns the most constrainted cell - the one which has the fewest possible assignments
+     * */
     public Cell getMostConstraintedCell(){
         int row = -1, column = -1, minimumAssignmentNumber = size * size;
         for(int i=0; i<size; ++i){
             for(int j=0; j<size; ++j){
-                if (getCell(i,j).nrOfPossibleAssignments() > 0  && getCell(i,j).nrOfPossibleAssignments() < minimumAssignmentNumber){
+                if (getCell(i,j).nrOfPossibleAssignments() > 0  && getCell(i,j).nrOfPossibleAssignments() < minimumAssignmentNumber && getCell(i,j).actualValue == 0 && !getCell(i,j).isStatic){
                     row = i;
                     column = j;
                     minimumAssignmentNumber = getCell(i,j).nrOfPossibleAssignments();
@@ -80,20 +88,18 @@ public class Sudoku {
         return cell;
     }
 
-    public void addCellToList(int row, int column, int value) {
-        Cell cell = getCell(row, column);
-        cell.row = row;
-        cell.column = column;
-        cell.actualValue = value;
-        cell.resetPossibleAssignments();
 
-        if (value != 0) {
-            getCell(row, column).isStatic = true;
-            propagateConstraint(getCell(row, column));
-        }
-
+    /**
+     * Propagates the constraints in the entire puzzle based on the selected cell
+     * */
+    public void propagateConstraint(Cell originalCell) {
+        forwardCheking(originalCell);
+        singlePossibleAssignment(originalCell);
     }
 
+    /**
+     * If a single value is possible for a cell, it will be set - and its constraints will be propagated as well
+     * */
     public void singlePossibleAssignment(Cell originalCell){
         for (int i = 0; i < size; ++i) {
             if (i != originalCell.row) {
@@ -136,12 +142,10 @@ public class Sudoku {
         //this.print();
     }
 
-    public void propagateConstraint(Cell originalCell) {
-       // System.out.println("Constraint propagation: (" + originalCell.row + ", " + originalCell.column + ") - " + originalCell.actualValue);
-        forwardCheking(originalCell);
-        //singlePossibleAssignment(originalCell);
-    }
 
+    /**
+     * Deletes the value of the cell from the possible assignments of the cells from its row, column, and square/
+     * */
     public void forwardCheking(Cell originalCell) {
         for (int i = 0; i < size; ++i) {
             if (i != originalCell.row) {
@@ -186,75 +190,9 @@ public class Sudoku {
 
     }
 
-    public void propagateConstraintBackup(Cell cell, boolean isPropagation) {
-        int row = cell.row, column = cell.column, value = cell.actualValue;
-        for (int i = 0; i < size; ++i) {
-            if (i != row) {
-                if (isPropagation) {
-                    if (getCell(row, column).isStatic) {
-                        getCell(i, column).getPossibleAssignments()[value] = -1;
-                    } else {
-                        if (getCell(i, column).getPossibleAssignments()[value] != -1) {
-                            getCell(i, column).getPossibleAssignments()[value] = 0;
-                        }
-                    }
-                } else {
-                    if (!getCell(i, column).isStatic) {
-                        if (getCell(i, column).getPossibleAssignments()[value] != -1) {
-                            getCell(i, column).getPossibleAssignments()[value] = 1;
-                        }
-                    }
-
-                }
-            }
-
-            if (i != column) {
-                if (isPropagation) {
-                    if (getCell(row, column).isStatic) {
-                        getCell(row, i).getPossibleAssignments()[value] = -1;
-                    } else {
-                        if (getCell(row, i).getPossibleAssignments()[value] != -1) {
-                            getCell(row, i).getPossibleAssignments()[value] = 0;
-                        }
-                    }
-                } else {
-                    if (!getCell(row, i).isStatic) {
-                        if (getCell(row, i).getPossibleAssignments()[value] != -1) {
-                            getCell(row, i).getPossibleAssignments()[value] = 1;
-                        }
-                    }
-
-                }
-            }
-        }
-
-        int unitSize = (int) Math.sqrt(size);
-        for (int i = row / unitSize * unitSize; i <= row / unitSize * unitSize + unitSize - 1; ++i) {
-            for (int j = column / unitSize * unitSize; j <= column / unitSize * unitSize + unitSize - 1; ++j) {
-                if (i != row && j != column) {
-                    if (isPropagation) {
-                        if (getCell(row, column).isStatic) {
-                            getCell(i, j).getPossibleAssignments()[value] = -1;
-                        } else {
-                            if (getCell(i, j).getPossibleAssignments()[value] != -1) {
-                                getCell(i, j).getPossibleAssignments()[value] = 0;
-                            }
-                        }
-
-                    } else {
-                        if (!getCell(i, j).isStatic) {
-                            if (getCell(i, j).getPossibleAssignments()[value] != -1) {
-                                getCell(i, j).getPossibleAssignments()[value] = 1;
-                            }
-                        }
-
-                    }
-                }
-
-            }
-        }
-
-    }
+    /**
+     * Checks if every cell has a value
+     * */
     public boolean isComplete() {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
@@ -267,6 +205,9 @@ public class Sudoku {
         return true;
     }
 
+    /**
+     * Prints the sudoku
+     * */
     public void print() {
         double space = Math.sqrt(size);
         for (int i = 0; i < size; ++i) {
@@ -292,24 +233,40 @@ public class Sudoku {
 
         }
         System.out.println();
-
-        for(int i=0; i<9;++i){
-            System.out.print("( " + 0 + ", " + i + "): Possible assignments: ");
-            for(int j=1; j<=9; ++j){
-                System.out.print(getCell(0,i).getPossibleAssignments()[j] + " ");
-            }
-            System.out.println();
-
-        }
-
-
         System.out.println("_______________________________________________________________________________________");
         System.out.println();
 
 
     }
 
+    /**
+     * Returns the size of the sudoku (e.g. 9, 16, 25)
+     * */
+    public int getSize() {
+        return size;
+    }
 
+    /**
+     * Returns a specific cell of the sudoku
+     * */
+    public Cell getCell(int i, int j) {
+        return cells[i][j];
+    }
 
+    /**
+     * Adds a cell to the sudoku
+     * */
+    public void addCellToList(int row, int column, int value) {
+        Cell cell = getCell(row, column);
+        cell.row = row;
+        cell.column = column;
+        cell.actualValue = value;
+        cell.resetPossibleAssignments();
 
+        if (value != 0) {
+            getCell(row, column).isStatic = true;
+            propagateConstraint(getCell(row, column));
+        }
+
+    }
 }
