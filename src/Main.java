@@ -5,6 +5,6 @@ public class Main {
         sudoku.createFromFile("sudoku.txt");
         sudoku.print();
         sudoku = Solver.solve(sudoku);
-        sudoku.print();
+        if (sudoku != null) sudoku.print();
     }
 }

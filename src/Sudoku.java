@@ -69,11 +69,11 @@ public class Sudoku {
     /**
      * Returns the most constrainted cell - the one which has the fewest possible assignments
      * */
-    public Cell getMostConstraintedCell(){
+    public Cell MVRVariable(){
         int row = -1, column = -1, minimumAssignmentNumber = size * size;
         for(int i=0; i<size; ++i){
             for(int j=0; j<size; ++j){
-                if (getCell(i,j).nrOfPossibleAssignments() > 0  && getCell(i,j).nrOfPossibleAssignments() < minimumAssignmentNumber && getCell(i,j).actualValue == 0 && !getCell(i,j).isStatic){
+                if (getCell(i,j).nrOfPossibleAssignments() < minimumAssignmentNumber && getCell(i,j).actualValue == 0 && !getCell(i,j).isStatic){
                     row = i;
                     column = j;
                     minimumAssignmentNumber = getCell(i,j).nrOfPossibleAssignments();
@@ -87,7 +87,6 @@ public class Sudoku {
         Cell cell = getCell(row,column);
         return cell;
     }
-
 
     /**
      * Propagates the constraints in the entire puzzle based on the selected cell
@@ -105,7 +104,7 @@ public class Sudoku {
             if (i != originalCell.row) {
                 Cell cellOfTheSameColumn = getCell(i, originalCell.column);
                 if (!cellOfTheSameColumn.isStatic) {
-                        if(cellOfTheSameColumn.nrOfPossibleAssignments() == 1){
+                        if(cellOfTheSameColumn.nrOfPossibleAssignments() == 1 && cellOfTheSameColumn.actualValue== 0){
                             cellOfTheSameColumn.setFirstPossibleValue();
                             forwardCheking(cellOfTheSameColumn);
                         }
@@ -115,7 +114,7 @@ public class Sudoku {
             if (i != originalCell.column) {
                 Cell cellOfTheSameRow = getCell(originalCell.row, i);
                 if (!cellOfTheSameRow.isStatic) {
-                        if(cellOfTheSameRow.nrOfPossibleAssignments() == 1){
+                        if(cellOfTheSameRow.nrOfPossibleAssignments() == 1 && cellOfTheSameRow.actualValue==0){
                             cellOfTheSameRow.setFirstPossibleValue();
                             forwardCheking(cellOfTheSameRow);
                         }
@@ -129,7 +128,7 @@ public class Sudoku {
                 if (i != originalCell.row && j != originalCell.column) {
                     Cell cellOfTheSameSquare = getCell(i, j);
                     if (!cellOfTheSameSquare.isStatic) {
-                            if(cellOfTheSameSquare.nrOfPossibleAssignments() == 1){
+                            if(cellOfTheSameSquare.nrOfPossibleAssignments() == 1 && cellOfTheSameSquare.actualValue == 0){
                                 cellOfTheSameSquare.setFirstPossibleValue();
                                 forwardCheking(cellOfTheSameSquare);
                             }
@@ -139,9 +138,7 @@ public class Sudoku {
 
             }
         }
-        //this.print();
     }
-
 
     /**
      * Deletes the value of the cell from the possible assignments of the cells from its row, column, and square/
