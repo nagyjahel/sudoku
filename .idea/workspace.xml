@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="961d9adc-38f6-46ad-8484-16df9e99b62f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SudokuJava/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SudokuJava/Cell.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SudokuJava/Solver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SudokuJava/Solver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sudoku.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Solver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="250">
+              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -49,7 +46,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
+            <state relative-caret-position="136">
               <caret line="8" column="38" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="38" />
               <folding>
                 <element signature="method#Cell#0;class#Cell#0" />
@@ -59,26 +56,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Sudoku.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-118">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="374">
+              <caret line="75" column="115" selection-start-line="75" selection-start-column="115" selection-end-line="75" selection-end-column="115" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Sudoku#0;class#Sudoku#0" />
                 <element signature="method#Sudoku#1;class#Sudoku#0" />
                 <element signature="method#createFromFile#0;class#Sudoku#0" />
                 <element signature="method#initCells#0;class#Sudoku#0" />
-                <element signature="method#getMostConstraintedCell#0;class#Sudoku#0" />
                 <element signature="method#propagateConstraint#0;class#Sudoku#0" />
                 <element signature="method#singlePossibleAssignment#0;class#Sudoku#0" />
                 <element signature="method#forwardCheking#0;class#Sudoku#0" />
                 <element signature="method#print#0;class#Sudoku#0" />
-                <element signature="e#8369#8370#0" expanded="true" />
-                <element signature="e#8396#8397#0" expanded="true" />
-                <element signature="e#8500#8501#0" expanded="true" />
-                <element signature="e#8534#8535#0" expanded="true" />
                 <element signature="method#addCellToList#0;class#Sudoku#0" />
               </folding>
             </state>
@@ -115,9 +107,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="width" value="980" />
-    <option name="height" value="1040" />
+    <option name="x" value="-9" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -125,8 +117,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -151,8 +143,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552055573460" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552059105515" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SchoolProjects" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
@@ -229,8 +221,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16845638" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17248322" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -239,8 +232,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" x="23" y="161" width="1490" height="501" id="Run" order="2" type="WINDOWED" visible="true" weight="0.5609065" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.11473088" />
+      <window_info anchor="bottom" x="23" y="161" width="1490" height="501" id="Run" order="2" type="WINDOWED" weight="0.5609065" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39235127" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
@@ -292,6 +285,16 @@
     <option name="LAST_COMMIT_MESSAGE" value="Resolving 9x9 sudoku with the basic constraint propagation." />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Solver.java</url>
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="sudoku.cells[2]" />
@@ -310,9 +313,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
+        <state relative-caret-position="136">
           <caret line="8" column="38" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="38" />
           <folding>
             <element signature="method#Cell#0;class#Cell#0" />
@@ -321,10 +331,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Solver.java">
+    <entry file="file://$PROJECT_DIR$/src/Sudoku.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="374">
+          <caret line="75" column="115" selection-start-line="75" selection-start-column="115" selection-end-line="75" selection-end-column="115" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Sudoku#0;class#Sudoku#0" />
+            <element signature="method#Sudoku#1;class#Sudoku#0" />
+            <element signature="method#createFromFile#0;class#Sudoku#0" />
+            <element signature="method#initCells#0;class#Sudoku#0" />
+            <element signature="method#propagateConstraint#0;class#Sudoku#0" />
+            <element signature="method#singlePossibleAssignment#0;class#Sudoku#0" />
+            <element signature="method#forwardCheking#0;class#Sudoku#0" />
+            <element signature="method#print#0;class#Sudoku#0" />
+            <element signature="method#addCellToList#0;class#Sudoku#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -335,34 +357,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/Solver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Sudoku.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Sudoku#0;class#Sudoku#0" />
-            <element signature="method#Sudoku#1;class#Sudoku#0" />
-            <element signature="method#createFromFile#0;class#Sudoku#0" />
-            <element signature="method#initCells#0;class#Sudoku#0" />
-            <element signature="method#getMostConstraintedCell#0;class#Sudoku#0" />
-            <element signature="method#propagateConstraint#0;class#Sudoku#0" />
-            <element signature="method#singlePossibleAssignment#0;class#Sudoku#0" />
-            <element signature="method#forwardCheking#0;class#Sudoku#0" />
-            <element signature="method#print#0;class#Sudoku#0" />
-            <element signature="e#8369#8370#0" expanded="true" />
-            <element signature="e#8396#8397#0" expanded="true" />
-            <element signature="e#8500#8501#0" expanded="true" />
-            <element signature="e#8534#8535#0" expanded="true" />
-            <element signature="method#addCellToList#0;class#Sudoku#0" />
-          </folding>
+        <state relative-caret-position="250">
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
         </state>
       </provider>
     </entry>

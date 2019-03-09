@@ -17,7 +17,13 @@ public class Solver {
         Cell cell = copy.MVRVariable();
 
         // If no cell of this kind exist, go back
-        if(cell == null){ return null;}
+        if(cell == null){
+            return  null;
+        }
+
+        if(cell.nrOfPossibleAssignments() == 0){
+            return null;
+        }
 
         // Go trough the possible values
         for (int i = 0; i < sudoku.getSize(); ++i) {
@@ -26,7 +32,7 @@ public class Solver {
             if(cell.actualValue == -1) return null;
             // Propagate the constraints based on the actual value of the cell
             copy.propagateConstraint(cell);
-            copy.print();
+            //copy.print();
             // Recursive call
             Sudoku result = solve(copy);
             // If the previous version of the sudoku was successful, return it
