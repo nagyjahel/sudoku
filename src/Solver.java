@@ -14,7 +14,7 @@ public class Solver {
         Sudoku copy = new Sudoku(sudoku);
 
         // Find the cell which has the fewest possible values - which is the most constrainted cell
-        Cell cell = copy.MVRVariable();
+        Cell cell = sudoku.MVRVariable();
 
         // If no cell of this kind exist, go back
         if(cell == null){
@@ -31,12 +31,19 @@ public class Solver {
             cell.setFirstPossibleValue();
             if(cell.actualValue == -1) return null;
             // Propagate the constraints based on the actual value of the cell
-            copy.propagateConstraint(cell);
+            sudoku.propagateConstraint(cell);
             //copy.print();
             // Recursive call
-            Sudoku result = solve(copy);
+            Sudoku result = solve(sudoku);
             // If the previous version of the sudoku was successful, return it
             if (result != null) {return result; }
+            else{
+                int value = cell.actualValue;
+                sudoku = new Sudoku(copy);
+                cell = sudoku.MVRVariable();
+                cell.getPossibleAssignments()[value] = 0;
+
+            }
             // Otherwise restore it based on the backup copy
             //else{ return copy;}
         }
