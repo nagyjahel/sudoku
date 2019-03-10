@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="961d9adc-38f6-46ad-8484-16df9e99b62f" name="Default Changelist" comment="">
+    <list default="true" id="961d9adc-38f6-46ad-8484-16df9e99b62f" name="Default Changelist" comment="Corrections">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SudokuJava/Solver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SudokuJava/Solver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sudoku.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Solver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="354">
+              <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -28,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sudoku.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+            <state relative-caret-position="272">
+              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -46,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="38" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="38" />
+            <state relative-caret-position="1173">
+              <caret line="87" column="71" selection-start-line="87" selection-start-column="71" selection-end-line="87" selection-end-column="71" />
               <folding>
                 <element signature="method#Cell#0;class#Cell#0" />
                 <element signature="method#nrOfPossibleAssignments#0;class#Cell#0" />
@@ -59,18 +61,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Sudoku.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="75" column="115" selection-start-line="75" selection-start-column="115" selection-end-line="75" selection-end-column="115" />
+            <state relative-caret-position="204">
+              <caret line="98" column="64" selection-start-line="98" selection-start-column="64" selection-end-line="98" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Sudoku#0;class#Sudoku#0" />
                 <element signature="method#Sudoku#1;class#Sudoku#0" />
                 <element signature="method#createFromFile#0;class#Sudoku#0" />
                 <element signature="method#initCells#0;class#Sudoku#0" />
-                <element signature="method#propagateConstraint#0;class#Sudoku#0" />
                 <element signature="method#singlePossibleAssignment#0;class#Sudoku#0" />
                 <element signature="method#forwardCheking#0;class#Sudoku#0" />
-                <element signature="method#print#0;class#Sudoku#0" />
+                <element signature="method#nakedTwins#0;class#Sudoku#0" />
+                <element signature="e#13004#13005#0" expanded="true" />
+                <element signature="e#13140#13141#0" expanded="true" />
                 <element signature="method#addCellToList#0;class#Sudoku#0" />
               </folding>
             </state>
@@ -90,6 +93,9 @@
     <findStrings>
       <find>this</find>
       <find>this.</find>
+      <find>column</find>
+      <find>sys</find>
+      <find>system</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -98,18 +104,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Cell.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Cell.java" />
+        <option value="$PROJECT_DIR$/sudoku.txt" />
         <option value="$PROJECT_DIR$/src/Sudoku.java" />
         <option value="$PROJECT_DIR$/src/Solver.java" />
-        <option value="$PROJECT_DIR$/sudoku.txt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+    <option name="x" value="952" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -207,7 +213,21 @@
       <option name="project" value="LOCAL" />
       <updated>1551527095308</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Corrections">
+      <created>1552155553346</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1552155553346</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Resolving 16 * 16 sudoku.">
+      <created>1552158092617</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1552158092617</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -223,7 +243,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17248322" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.020134227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -232,14 +252,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" x="23" y="161" width="1490" height="501" id="Run" order="2" type="WINDOWED" weight="0.5609065" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39235127" />
+      <window_info anchor="bottom" x="213" y="136" width="834" height="609" id="Run" order="2" type="WINDOWED" weight="0.5609065" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.28611898" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3286119" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.1756374" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -282,19 +302,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial version" />
     <MESSAGE value="Resolving 9x9 sudoku with the basic constraint propagation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolving 9x9 sudoku with the basic constraint propagation." />
+    <MESSAGE value="Corrections" />
+    <MESSAGE value="Resolving 16 * 16 sudoku." />
+    <option name="LAST_COMMIT_MESSAGE" value="Resolving 16 * 16 sudoku." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Solver.java</url>
-          <line>20</line>
-          <properties />
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="sudoku.cells[2]" />
@@ -302,6 +314,7 @@
         <watch expression="sudoku.cells[0][6]" />
         <watch expression="sudoku.cells[0]" />
         <watch expression="sudoku.cells[0][8].possibleAssignments" />
+        <watch expression="cellsRowExceptions.get(4).possibleAssignments" />
       </configuration>
     </watches-manager>
   </component>
@@ -313,17 +326,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/sudoku.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        <state relative-caret-position="272">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="38" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="38" />
+        <state relative-caret-position="1173">
+          <caret line="87" column="71" selection-start-line="87" selection-start-column="71" selection-end-line="87" selection-end-column="71" />
           <folding>
             <element signature="method#Cell#0;class#Cell#0" />
             <element signature="method#nrOfPossibleAssignments#0;class#Cell#0" />
@@ -331,36 +344,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Sudoku.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="75" column="115" selection-start-line="75" selection-start-column="115" selection-end-line="75" selection-end-column="115" />
+        <state relative-caret-position="204">
+          <caret line="98" column="64" selection-start-line="98" selection-start-column="64" selection-end-line="98" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Sudoku#0;class#Sudoku#0" />
             <element signature="method#Sudoku#1;class#Sudoku#0" />
             <element signature="method#createFromFile#0;class#Sudoku#0" />
             <element signature="method#initCells#0;class#Sudoku#0" />
-            <element signature="method#propagateConstraint#0;class#Sudoku#0" />
             <element signature="method#singlePossibleAssignment#0;class#Sudoku#0" />
             <element signature="method#forwardCheking#0;class#Sudoku#0" />
-            <element signature="method#print#0;class#Sudoku#0" />
+            <element signature="method#nakedTwins#0;class#Sudoku#0" />
+            <element signature="e#13004#13005#0" expanded="true" />
+            <element signature="e#13140#13141#0" expanded="true" />
             <element signature="method#addCellToList#0;class#Sudoku#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sudoku.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Solver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+        <state relative-caret-position="354">
+          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
         </state>
       </provider>
     </entry>

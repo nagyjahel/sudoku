@@ -83,4 +83,15 @@ public class Cell {
     public byte[] getPossibleAssignments() {
         return possibleAssignments;
     }
+
+    /**
+     * Returns true if the two cells have the same possible assignments
+     */
+    public boolean areTwins(Cell cell){
+        for(int i=1; i< puzzleSize; ++i){
+            if(possibleAssignments[i] != cell.possibleAssignments[i]) return false;
+        }
+
+        return true;
+    }
 }
