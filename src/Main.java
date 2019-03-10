@@ -6,5 +6,6 @@ public class Main {
         sudoku.print();
         sudoku = Solver.solve(sudoku);
         if (sudoku != null) sudoku.print();
+        else System.out.println("The sudoku couldn't be solved");
     }
 }

@@ -23,10 +23,8 @@ public class Solver {
         Cell cellCopy = copy.MVRVariable();
         int row = cellCopy.row, column = cellCopy.column;
 
-        if(cell.nrOfPossibleAssignments() == 0){
-            return null;
-        }
-
+        if(cell.nrOfPossibleAssignments() == 0) return null;
+        
         // Go trough the possible values
         for (int i = 0; i < sudoku.getSize(); ++i) {
 

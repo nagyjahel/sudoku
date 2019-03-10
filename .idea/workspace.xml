@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="961d9adc-38f6-46ad-8484-16df9e99b62f" name="Default Changelist" comment="Corrections">
+    <list default="true" id="961d9adc-38f6-46ad-8484-16df9e99b62f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SudokuJava/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SudokuJava/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SudokuJava/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SudokuJava/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SudokuJava/Solver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SudokuJava/Solver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SudokuJava/Sudoku.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SudokuJava/Sudoku.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sudoku.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.txt" afterDir="false" />
@@ -18,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Solver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+            <state relative-caret-position="442">
+              <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -30,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sudoku.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+            <state relative-caret-position="1173">
+              <caret line="69" column="17" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -39,8 +43,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+            <state relative-caret-position="136">
+              <caret line="8" column="62" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/readme.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -48,7 +61,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
+            <state relative-caret-position="1171">
               <caret line="87" column="71" selection-start-line="87" selection-start-column="71" selection-end-line="87" selection-end-column="71" />
               <folding>
                 <element signature="method#Cell#0;class#Cell#0" />
@@ -61,19 +74,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Sudoku.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="98" column="64" selection-start-line="98" selection-start-column="64" selection-end-line="98" selection-end-column="64" />
+            <state relative-caret-position="192">
+              <caret line="101" column="7" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Sudoku#0;class#Sudoku#0" />
                 <element signature="method#Sudoku#1;class#Sudoku#0" />
                 <element signature="method#createFromFile#0;class#Sudoku#0" />
                 <element signature="method#initCells#0;class#Sudoku#0" />
-                <element signature="method#singlePossibleAssignment#0;class#Sudoku#0" />
+                <element signature="method#MVRVariable#0;class#Sudoku#0" />
                 <element signature="method#forwardCheking#0;class#Sudoku#0" />
+                <element signature="method#applyForwardCheckOnRowColumn#0;class#Sudoku#0" />
+                <element signature="method#applyForwardCheckOnSquare#0;class#Sudoku#0" />
+                <element signature="method#applyForwardCheckOnCell#0;class#Sudoku#0" />
+                <element signature="method#singlePossibleAssignment#0;class#Sudoku#0" />
                 <element signature="method#nakedTwins#0;class#Sudoku#0" />
-                <element signature="e#13004#13005#0" expanded="true" />
-                <element signature="e#13140#13141#0" expanded="true" />
+                <element signature="method#applyNakedTwinsOnRowColumn#0;class#Sudoku#0" />
+                <element signature="e#7905#8541#0" />
+                <element signature="method#getNakedTwins#0;class#Sudoku#0" />
+                <element signature="method#getNakedTwins#1;class#Sudoku#0" />
+                <element signature="method#searchNakedTwins#0;class#Sudoku#0" />
+                <element signature="method#removeNakedTwins#0;class#Sudoku#0" />
+                <element signature="method#isPartOfTheList#0;class#Sudoku#0" />
+                <element signature="method#isComplete#0;class#Sudoku#0" />
+                <element signature="method#print#0;class#Sudoku#0" />
+                <element signature="e#15002#15003#0" expanded="true" />
+                <element signature="e#15029#15030#0" expanded="true" />
+                <element signature="e#15131#15132#0" expanded="true" />
+                <element signature="e#15165#15166#0" expanded="true" />
                 <element signature="method#addCellToList#0;class#Sudoku#0" />
               </folding>
             </state>
@@ -104,11 +132,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Cell.java" />
-        <option value="$PROJECT_DIR$/sudoku.txt" />
-        <option value="$PROJECT_DIR$/src/Sudoku.java" />
         <option value="$PROJECT_DIR$/src/Solver.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Sudoku.java" />
+        <option value="$PROJECT_DIR$/sudoku.txt" />
+        <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
   </component>
@@ -149,7 +178,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552059105515" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552183860772" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../SchoolProjects" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
@@ -227,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552158092617</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finally resolving 25 * 25, and optimizing the 16 * 16">
+      <created>1552179461645</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1552179461645</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -243,7 +279,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.020134227" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23825504" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -259,7 +295,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.1756374" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.22804533" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -304,9 +340,20 @@
     <MESSAGE value="Resolving 9x9 sudoku with the basic constraint propagation." />
     <MESSAGE value="Corrections" />
     <MESSAGE value="Resolving 16 * 16 sudoku." />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolving 16 * 16 sudoku." />
+    <MESSAGE value="Finally resolving 25 * 25, and optimizing the 16 * 16" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finally resolving 25 * 25, and optimizing the 16 * 16" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Sudoku.java</url>
+          <line>212</line>
+          <properties />
+          <option name="timeStamp" value="138" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="sudoku.cells[2]" />
@@ -326,16 +373,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sudoku.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
+        <state relative-caret-position="1171">
           <caret line="87" column="71" selection-start-line="87" selection-start-column="71" selection-end-line="87" selection-end-column="71" />
           <folding>
             <element signature="method#Cell#0;class#Cell#0" />
@@ -344,37 +384,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Solver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        <state relative-caret-position="136">
+          <caret line="8" column="62" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Sudoku.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="98" column="64" selection-start-line="98" selection-start-column="64" selection-end-line="98" selection-end-column="64" />
+        <state relative-caret-position="192">
+          <caret line="101" column="7" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Sudoku#0;class#Sudoku#0" />
             <element signature="method#Sudoku#1;class#Sudoku#0" />
             <element signature="method#createFromFile#0;class#Sudoku#0" />
             <element signature="method#initCells#0;class#Sudoku#0" />
-            <element signature="method#singlePossibleAssignment#0;class#Sudoku#0" />
+            <element signature="method#MVRVariable#0;class#Sudoku#0" />
             <element signature="method#forwardCheking#0;class#Sudoku#0" />
+            <element signature="method#applyForwardCheckOnRowColumn#0;class#Sudoku#0" />
+            <element signature="method#applyForwardCheckOnSquare#0;class#Sudoku#0" />
+            <element signature="method#applyForwardCheckOnCell#0;class#Sudoku#0" />
+            <element signature="method#singlePossibleAssignment#0;class#Sudoku#0" />
             <element signature="method#nakedTwins#0;class#Sudoku#0" />
-            <element signature="e#13004#13005#0" expanded="true" />
-            <element signature="e#13140#13141#0" expanded="true" />
+            <element signature="method#applyNakedTwinsOnRowColumn#0;class#Sudoku#0" />
+            <element signature="e#7905#8541#0" />
+            <element signature="method#getNakedTwins#0;class#Sudoku#0" />
+            <element signature="method#getNakedTwins#1;class#Sudoku#0" />
+            <element signature="method#searchNakedTwins#0;class#Sudoku#0" />
+            <element signature="method#removeNakedTwins#0;class#Sudoku#0" />
+            <element signature="method#isPartOfTheList#0;class#Sudoku#0" />
+            <element signature="method#isComplete#0;class#Sudoku#0" />
+            <element signature="method#print#0;class#Sudoku#0" />
+            <element signature="e#15002#15003#0" expanded="true" />
+            <element signature="e#15029#15030#0" expanded="true" />
+            <element signature="e#15131#15132#0" expanded="true" />
+            <element signature="e#15165#15166#0" expanded="true" />
             <element signature="method#addCellToList#0;class#Sudoku#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Solver.java">
+    <entry file="file://$PROJECT_DIR$/sudoku.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+        <state relative-caret-position="1173">
+          <caret line="69" column="17" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
         </state>
       </provider>
     </entry>

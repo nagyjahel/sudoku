@@ -94,22 +94,73 @@ public class Sudoku {
      * Propagates the constraints in the entire puzzle based on the selected cell
      */
     public void propagateConstraint(Cell originalCell) {
-        while (true) {
+       // while (true) {
             forwardCheking(originalCell);
-            if (singlePossibleAssignment(originalCell) == false && nakedTwins(originalCell) == false) {
-                break;
+       //     if (singlePossibleAssignment(originalCell) == false){// && nakedTwins(originalCell) == false) {
+       //         break;
+       //     }
+       //  }
+    }
+
+    /**
+     * Deletes the value of the cell from the possible assignments of the cells from its row, column, and square
+     */
+
+    public void forwardCheking(Cell originalCell) {
+        applyForwardCheckOnRowColumn(originalCell);
+        applyForwardCheckOnSquare(originalCell);
+    }
+
+    // Helper function of the forwardChecking: applies the forwardCheck on the rows and the columns of the original cell
+    private void applyForwardCheckOnRowColumn(Cell originalCell) {
+        for (int i = 0; i < size; ++i) {
+            if (i != originalCell.row) {
+                Cell cellOfTheSameColumn = cells[i][originalCell.column];
+                applyForwardCheckOnCell(originalCell, cellOfTheSameColumn);
+            }
+
+            if (i != originalCell.column) {
+                Cell cellOfTheSameRow = getCell(originalCell.row, i);
+                applyForwardCheckOnCell(originalCell, cellOfTheSameRow);
             }
         }
-
     }
+
+    // Helper function of the forwardChecking: applies the forwardCheck on square of the original cell
+    private void applyForwardCheckOnSquare(Cell originalCell) {
+        int unitSize = (int) Math.sqrt(size);
+        for (int i = originalCell.row / unitSize * unitSize; i <= originalCell.row / unitSize * unitSize + unitSize - 1; ++i) {
+            for (int j = originalCell.column / unitSize * unitSize; j <= originalCell.column / unitSize * unitSize + unitSize - 1; ++j) {
+                if (i != originalCell.row && j != originalCell.column) {
+                    Cell cellOfTheSameSquare = getCell(i, j);
+                    applyForwardCheckOnCell(originalCell, cellOfTheSameSquare);
+                }
+
+            }
+        }
+    }
+
+    // Helper function of the applyForwardCheckOnRowColumn, and applyForwardCheckOnSquare: applies the forwardCheck on a cell
+    private void applyForwardCheckOnCell(Cell originalCell, Cell cell) {
+        if (originalCell.isStatic) {
+            cell.getPossibleAssignments()[originalCell.actualValue] = -1;
+        } else {
+            if (cell.getPossibleAssignments()[originalCell.actualValue] != -1) {
+                cell.getPossibleAssignments()[originalCell.actualValue] = 0;
+            }
+        }
+    }
+
     /**
      * If a single value is possible for a cell, it will be set - and its constraints will be propagated as well
+     * I wanted to make this code simpler but when I divided it into little function calls, the number of assignments raised
      */
+
     public boolean singlePossibleAssignment(Cell originalCell) {
         boolean changed = false;
         for (int i = 0; i < size; ++i) {
             if (i != originalCell.row) {
-                Cell cellOfTheSameColumn = getCell(i, originalCell.column);
+                Cell cellOfTheSameColumn = cells[i][originalCell.column];
                 if (!cellOfTheSameColumn.isStatic) {
                     if (cellOfTheSameColumn.nrOfPossibleAssignments() == 1 && cellOfTheSameColumn.actualValue == 0) {
                         cellOfTheSameColumn.setFirstPossibleValue();
@@ -155,118 +206,90 @@ public class Sudoku {
     }
 
     /**
-     * Deletes the value of the cell from the possible assignments of the cells from its row, column, and square/
+     * If in a row/column/square 2 elements have only the same 2 possible assignments, then these two assignments will be deleted from the rest of the elements from the column/row
      */
-    public void forwardCheking(Cell originalCell) {
 
-        for (int i = 0; i < size; ++i) {
-            if (i != originalCell.row) {
-                Cell cellOfTheSameColumn = getCell(i, originalCell.column);
-                if (originalCell.isStatic) {
-                    cellOfTheSameColumn.getPossibleAssignments()[originalCell.actualValue] = -1;
-                } else {
-                    if (cellOfTheSameColumn.getPossibleAssignments()[originalCell.actualValue] != -1) {
-                        cellOfTheSameColumn.getPossibleAssignments()[originalCell.actualValue] = 0;
-                    }
-                }
-            }
+    public boolean nakedTwins(Cell originalCell) {
+        ArrayList<Cell> nakedTwinsFromRow = getNakedTwins(originalCell, true);
+        ArrayList<Cell> nakedTwinsFromColumn = getNakedTwins(originalCell, false);
+        ArrayList<Cell> nakedTwinsFromSquare = getNakedTwins(originalCell);
 
-            if (i != originalCell.column) {
-                Cell cellOfTheSameRow = getCell(originalCell.row, i);
-                if (originalCell.isStatic) {
-                    cellOfTheSameRow.getPossibleAssignments()[originalCell.actualValue] = -1;
-                } else {
-                    if (cellOfTheSameRow.getPossibleAssignments()[originalCell.actualValue] != -1) {
-                        cellOfTheSameRow.getPossibleAssignments()[originalCell.actualValue] = 0;
-                    }
-                }
-            }
+        boolean changed = false;
+
+        if (nakedTwinsFromColumn.size() != 0 || nakedTwinsFromColumn.size() != 0) {
+            changed = applyNakedTwins(nakedTwinsFromRow, nakedTwinsFromColumn, originalCell);
         }
 
+        if (nakedTwinsFromSquare.size() != 0) {
+            changed = applyNakedTwins(nakedTwinsFromSquare, originalCell);
+        }
+
+        return changed;
+    }
+
+    // Helper function of the nakedTwins: applies the nakedTwinsConstraint on the row and the column of the original cell
+    private boolean applyNakedTwins(ArrayList<Cell> nakedTwinsFromRow, ArrayList<Cell> nakedTwinsFromColumn, Cell originalCell) {
+        boolean changed = false;
+        for (int i = 0; i < size; ++i) {
+            if (i != originalCell.column && nakedTwinsFromRow.size() != 0) {
+                Cell cellOfTheSameRow = cells[originalCell.row][i];
+                changed = removeNakedTwins(nakedTwinsFromRow, cellOfTheSameRow);
+            }
+
+            if (i != originalCell.row && nakedTwinsFromColumn.size() != 0) {
+                Cell cellOfTheSameColumn = cells[i][originalCell.column];
+                changed = removeNakedTwins(nakedTwinsFromColumn, cellOfTheSameColumn);
+            }
+        }
+        return changed;
+    }
+
+    // Helper function of the nakedTwins: applies the nakedTwinsConstraint on the square of the original cell
+    private boolean applyNakedTwins(ArrayList<Cell> nakedTwinsFromSquare, Cell originalCell) {
+        boolean changed = false;
         int unitSize = (int) Math.sqrt(size);
         for (int i = originalCell.row / unitSize * unitSize; i <= originalCell.row / unitSize * unitSize + unitSize - 1; ++i) {
             for (int j = originalCell.column / unitSize * unitSize; j <= originalCell.column / unitSize * unitSize + unitSize - 1; ++j) {
                 if (i != originalCell.row && j != originalCell.column) {
-                    Cell cellOfTheSameSquare = getCell(i, j);
-                    if (originalCell.isStatic) {
-                        cellOfTheSameSquare.getPossibleAssignments()[originalCell.actualValue] = -1;
-                    } else {
-                        if (cellOfTheSameSquare.getPossibleAssignments()[originalCell.actualValue] != -1) {
-                            cellOfTheSameSquare.getPossibleAssignments()[originalCell.actualValue] = 0;
-                        }
-                    }
-                }
-
-            }
-        }
-
-    }
-
-    /**
-     * If in a row or in a column 2 elements have only the same 2 possible assignments, then these two assignments will be deleted from the rest of the elements from the column/row
-     */
-    public boolean nakedTwins(Cell originalCell) {
-        ArrayList<Cell> nakedTwinsFromRow = getNakedTwins(originalCell, true);
-        ArrayList<Cell> nakedTwinsFromColumn = getNakedTwins(originalCell,false);
-
-        boolean changed = false;
-        if(nakedTwinsFromColumn.size() != 0 || nakedTwinsFromColumn.size()!= 0) {
-            for (int i = 0; i < size; ++i) {
-                if (i != originalCell.column && nakedTwinsFromRow.size()!=0) {
-                    Cell cellOfTheSameRow = cells[originalCell.row][i];
-                    if (!cellOfTheSameRow.isStatic && cellOfTheSameRow.nrOfPossibleAssignments() > 0) {
-                        if (!isPartOfTheList(nakedTwinsFromRow, cellOfTheSameRow)) {
-                            for (Cell nakedTwinFromRow : nakedTwinsFromRow) {
-                                for (int j = 1; j <= size; j++) {
-                                    if (nakedTwinFromRow.getPossibleAssignments()[j] == 1 && cellOfTheSameRow.getPossibleAssignments()[j] != -1) {
-                                        cellOfTheSameRow.getPossibleAssignments()[j] = 0;
-                                        changed = true;
-
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                }
-
-                if (i != originalCell.row && nakedTwinsFromColumn.size()!=0) {
-                    Cell cellOfTheSameColumn = cells[i][originalCell.column];
-                    if (!cellOfTheSameColumn.isStatic && cellOfTheSameColumn.nrOfPossibleAssignments() > 0) {
-                        if (!isPartOfTheList(nakedTwinsFromColumn, cellOfTheSameColumn)) {
-                            for (Cell nakedTwinFromColumn : nakedTwinsFromColumn) {
-                                for (int j = 1; j <= size; j++) {
-                                    if (nakedTwinFromColumn.getPossibleAssignments()[j] == 1 && cellOfTheSameColumn.getPossibleAssignments()[j] != -1) {
-                                        cellOfTheSameColumn.getPossibleAssignments()[j] = 0;
-                                        changed = true;
-                                    }
-                                }
-                            }
-
-                        }
-                    }
+                    Cell cellOfTheSameSquare = cells[i][j];
+                    changed = removeNakedTwins(nakedTwinsFromSquare, cellOfTheSameSquare);
                 }
             }
         }
         return changed;
     }
 
-    /**
-     * Searches for the elements which have only two possible assingmegts, then returns the naked twins from them
-     * */
-    private ArrayList<Cell> getNakedTwins(Cell ofCell, boolean fromRow){
+    // Helper function of the nakedTwins: returns the nakedTwins from the row and the column of the original cell
+    private ArrayList<Cell> getNakedTwins(Cell ofCell) {
+        ArrayList<Cell> cellsWithTwoPossibleAssigments = new ArrayList<>();
+        int unitSize = (int) Math.sqrt(size);
+        for (int i = ofCell.row / unitSize * unitSize; i <= ofCell.row / unitSize * unitSize + unitSize - 1; ++i) {
+            for (int j = ofCell.column / unitSize * unitSize; j <= ofCell.column / unitSize * unitSize + unitSize - 1; ++j) {
+                if (i != ofCell.row && j != ofCell.column) {
+                    Cell cellOfTheSameSquare = cells[i][j];
+                    if (cellOfTheSameSquare.nrOfPossibleAssignments() == 0) {
+                        cellsWithTwoPossibleAssigments.add(cellOfTheSameSquare);
+                    }
+                }
+            }
+        }
+
+        return searchNakedTwins(cellsWithTwoPossibleAssigments);
+    }
+
+    // Helper function of the nakedTwins: returns the nakedTwins from the square of the original cell
+    private ArrayList<Cell> getNakedTwins(Cell ofCell, boolean fromRow) {
         ArrayList<Cell> cellsWithTwoPossibleAssigments = new ArrayList<>();
 
-        for(int i=0; i<size; ++i){
+        for (int i = 0; i < size; ++i) {
             Cell cell = null;
-            if(fromRow){
+            if (fromRow) {
                 cell = cells[ofCell.row][i];
-            }
-            else {
+            } else {
                 cell = cells[i][ofCell.column];
             }
 
-            if(cell.nrOfPossibleAssignments() == 2){
+            if (cell.nrOfPossibleAssignments() == 2) {
                 cellsWithTwoPossibleAssigments.add(cell);
             }
         }
@@ -274,43 +297,59 @@ public class Sudoku {
         return searchNakedTwins(cellsWithTwoPossibleAssigments);
     }
 
-    /**
-     * Gets the naked twins from a list of cells with two possible assignments
-     * */
-
-    private ArrayList<Cell> searchNakedTwins(ArrayList<Cell> list){
+    // Helper function of the getNakedTwins: returns the nakedTwins from a list of Cells with two possible assignments
+    private ArrayList<Cell> searchNakedTwins(ArrayList<Cell> list) {
         ArrayList<Cell> nakedTwins = new ArrayList<>();
-        int[] count = new int[list.size()] ;
-        Arrays.fill(count,0);
+        int[] count = new int[list.size()];
+        Arrays.fill(count, 0);
 
-        for(int i=0; i<list.size(); ++i){
-            for(int j=0; j<list.size(); ++j){
-                if(i != j && list.get(i).areTwins(list.get(j))){
-                    count[i] ++;
-                    count[j] ++;
+        for (int i = 0; i < list.size(); ++i) {
+            for (int j = 0; j < list.size(); ++j) {
+                if (i != j && list.get(i).areTwins(list.get(j))) {
+                    count[i]++;
+                    count[j]++;
                 }
             }
         }
-        for(int i=0; i<list.size(); ++i){
-            if(count[i] == 2){
+        for (int i = 0; i < list.size(); ++i) {
+            if (count[i] == 2) {
                 nakedTwins.add(list.get(i));
             }
         }
         return nakedTwins;
     }
 
+    // Helper function of the nakedTwins: actually removes the possible assignments of the naked twins from possible assignments of the cells from a given cell
+    private boolean removeNakedTwins(ArrayList<Cell> nakedTwins, Cell cellOfTheSameRow) {
+        boolean changed = false;
+        if (!cellOfTheSameRow.isStatic && cellOfTheSameRow.nrOfPossibleAssignments() > 0) {
+            if (!isPartOfTheList(nakedTwins, cellOfTheSameRow)) {
+                for (Cell nakedTwinFromRow : nakedTwins) {
+                    for (int j = 1; j <= size; j++) {
+                        if (nakedTwinFromRow.getPossibleAssignments()[j] == 1 && cellOfTheSameRow.getPossibleAssignments()[j] != -1) {
+                            cellOfTheSameRow.getPossibleAssignments()[j] = 0;
+                            changed = true;
+
+                        }
+                    }
+                }
+
+            }
+        }
+        return changed;
+    }
+
     /**
      * It realizes as the arrayList.indexOf(element) for the cell type
-     * */
-    private boolean isPartOfTheList(ArrayList<Cell> list, Cell searchedCell){
-        for(Cell cell:list){
-            if(cell == searchedCell){
+     */
+    private boolean isPartOfTheList(ArrayList<Cell> list, Cell searchedCell) {
+        for (Cell cell : list) {
+            if (cell == searchedCell) {
                 return true;
             }
         }
         return false;
     }
-
 
     /**
      * Checks if every cell has a value
